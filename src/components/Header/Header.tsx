@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 function Header () {
     return(
         <header>
-            <h1 className='text-gray-300 text-2xl mt-2'>Clever TODOs</h1>
+            <h1 className='text-gray-300 text-2xl mt-2'>Clever TODOs (Test)</h1>
         </header>
     );
 }
