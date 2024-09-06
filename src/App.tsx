@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Calendar from "./components/Calendar/Calendar";
+import Header from "./components/Header/Header";
+import Button from "./components/Button/Button";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="flex items-center justify-start bg-gray-900 h-dvh p-2 flex-col">
+          <div className="flex">
+              <Header />
+          </div>
+          <div className="flex max-w-sm pt-6">
+              <Calendar />
+          </div>
+          <div className="flex pt-6">
+              <Button />
+          </div>
+      </div>
   );
 }
 
