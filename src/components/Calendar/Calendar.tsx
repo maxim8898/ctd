@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import {render} from "@testing-library/react";
 import Weekday from "../Weekday/Weekday";
 import {WEEKDAY} from "../Weekday/Weekday";
 
