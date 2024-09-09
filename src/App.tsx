@@ -10,7 +10,7 @@ function App() {
           <div className="flex">
               <Header />
           </div>
-          <div className="flex max-w-sm pt-6">
+          <div className="flex max-w-sm md:max-w-none pt-6">
               <Calendar />
           </div>
           <div className="flex pt-6">
