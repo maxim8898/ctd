@@ -3,8 +3,8 @@ import Weekday, {WEEKDAY} from "../Weekday/Weekday";
 
 function Calendar() {
     return (
-        <div className='flex bg-white shadow-md justify-start md:justify-center rounded-lg overflow-x-scroll mx-auto
-            py-4 px-2  md:mx-12'>
+        <div className='flex bg-white shadow-md justify-start md:justify-center rounded-lg overflow-x-auto mx-auto
+            py-4 px-2  md:mx-12 no-scrollbar'>
             <Weekday weekday={WEEKDAY.Sun} date={11} active={false} />
             <Weekday weekday={WEEKDAY.Mon} date={12} active={false} />
             <Weekday weekday={WEEKDAY.Tue} date={13} active={false} />

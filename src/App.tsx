@@ -4,8 +4,18 @@ import Calendar from "./components/Calendar/Calendar";
 import Header from "./components/Header/Header";
 import Button from "./components/Button/Button";
 import Modal from "./components/Modal/Modal";
+import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
+import List from "./components/List/List";
+
+export interface Todo {
+    id: string,
+    status: boolean,
+    date: number,
+    text: string,
+}
 
 function App() {
+    const [todos, setTodos] = useState(new Map<string, Todo>());
     const [modalIsOpen, setModalOpen] = useState(false);
 
     return (
@@ -21,8 +31,11 @@ function App() {
                 isOpen={modalIsOpen}
                 onClose={() => setModalOpen(false)}
               >
-                  <div>Form</div>
+                  <AddTodoForm items={todos} setTodos={setTodos} onClose={() => setModalOpen(false)} />
               </Modal>
+          </div>
+          <div>
+            <List items={todos} setTodos={setTodos} />
           </div>
           <div className="flex pt-6">
               <Button onClick={setModalOpen} />
