@@ -1,6 +1,5 @@
 import React from "react";
-import Weekday from "../Weekday/Weekday";
-import {WEEKDAY} from "../Weekday/Weekday";
+import Weekday, {WEEKDAY} from "../Weekday/Weekday";
 
 function Calendar() {
     return (
