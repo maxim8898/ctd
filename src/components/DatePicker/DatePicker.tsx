@@ -16,8 +16,8 @@ function DatePicker() {
     const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     const today = new Date();
-    let daysInMonth = new Date(today.getFullYear(), today.getMonth() + 2, 0).getDate();
-    let dayOfWeek = new Date(today.getFullYear(), today.getMonth() + 1).getDay();
+    let daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    let dayOfWeek = new Date(today.getFullYear(), today.getMonth()).getDay();
     let blankdaysArray: number[] = [];
     for ( let i=1; i <= dayOfWeek; i++) {
         blankdaysArray.push(i);
