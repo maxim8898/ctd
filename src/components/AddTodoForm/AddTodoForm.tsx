@@ -6,26 +6,25 @@ import DatePicker from "../DatePicker/DatePicker";
 interface AddTodoFormProps {
     item?: Todo,
     items: Map<string, Todo>,
-    setTodos: (todos: Map<string, Todo>) => void,
+    timestamp: number,
+    setTodo: (id: string, todo: Todo) => void,
     onClose: () => void,
 }
-function AddTodoForm({ item, items, setTodos, onClose }: AddTodoFormProps) {
+function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormProps) {
     const[text, setText] = useState(item ? item.text : '');
     function editTodo() {
         if (typeof item !== 'undefined') {
             item.text = text;
-            items.set(item.id, item);
-            setTodos(items);
+            setTodo(item.id, item);
         } else {
             const id = uuid();
             const newItem = {
                 id: id,
                 status: false,
                 text: text,
-                date: 1,
+                date: timestamp,
             };
-            items.set(id, newItem);
-            setTodos(items);
+            setTodo(id, newItem);
         }
 
         onClose();
