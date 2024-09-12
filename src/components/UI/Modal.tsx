@@ -14,7 +14,7 @@ function Modal({ isOpen, onClose, children }: ModalProps) {
                   <div className="max-h-full w-full overflow-y-auto rounded-lg bg-white flex max-w-sm md:max-w-sm">
                       <div className="relative w-full">
                           <div className="m-8 my-20 max-w-[400px] mx-auto px-2">
-                              <button className="absolute right-1 top-1" onClick={() => onClose()}>X</button>
+                              <button className="absolute right-1 top-1" onClick={onClose}>X</button>
                               { children }
                           </div>
                       </div>

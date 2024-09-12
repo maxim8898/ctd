@@ -1,12 +1,14 @@
 import React from "react";
 import {Todo} from "../../App";
+import Button from "../UI/Button";
 
 interface ListProps {
     items: Map<string, Todo>,
     timestamp: number,
     setTodo: (id: string, todo: Todo) => void,
+    openEdit: (todo: Todo) => void,
 }
-function TodoList({ items, timestamp, setTodo }: ListProps) {
+function TodoList({ items, timestamp, setTodo, openEdit }: ListProps) {
     const todos = Array.from(items).filter(([id, todo]) => {
         return (new Date(todo.date)).getDate() === (new Date(timestamp)).getDate();
     });
@@ -28,6 +30,9 @@ function TodoList({ items, timestamp, setTodo }: ListProps) {
                                 <p className="text-base font-bold text-gray-100 dark:text-white">
                                     {todo.text}
                                 </p>
+                                <Button onClick={() => openEdit(todo)}>
+                                    <span>edit</span>
+                                </Button>
                             </div>
                         </div>
                     ))

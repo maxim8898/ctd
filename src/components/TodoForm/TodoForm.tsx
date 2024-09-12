@@ -3,14 +3,14 @@ import {Todo} from "../../App";
 import uuid from 'react-uuid';
 import DatePicker from "../DatePicker/DatePicker";
 
-interface AddTodoFormProps {
+interface TodoFormProps {
     item?: Todo,
     items: Map<string, Todo>,
     timestamp: number,
     setTodo: (id: string, todo: Todo) => void,
     onClose: () => void,
 }
-function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormProps) {
+function TodoForm({ item, items, timestamp, setTodo, onClose }: TodoFormProps) {
     const [text, setText] = useState(item ? item.text : '');
     const [datepickerTimestamp, setDatepickerTimestamp] = useState(timestamp);
     function editTodo() {
@@ -48,9 +48,9 @@ function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormPr
             </div>
             <button className="flex h-10 w-40 my-4 mx-auto items-center justify-center overflow-hidden bg-purple-600 rounded-lg font-medium text-white"
                 onClick={(e) => {editTodo()}}
-            >Add</button>
+            >{(typeof item !== 'undefined' ? 'Save' : 'Add')}</button>
         </>
     )
 }
 
-export default AddTodoForm;
+export default TodoForm;

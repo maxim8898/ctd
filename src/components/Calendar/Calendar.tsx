@@ -22,6 +22,7 @@ function Calendar({activeDateTimestamp, openWeekTimestamp, onClick}: CalendarPro
             py-4 px-2  md:mx-12 no-scrollbar'>
             { days.map((day, id) => (
                 <Weekday
+                    key={id}
                     active={new Date(activeDateTimestamp).getDate() === day}
                     marked={false}
                     weekday={weekdays[id]}
