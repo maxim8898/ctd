@@ -29,7 +29,7 @@ function List({ items, setTodos }: ListProps) {
                             defaultChecked={todo.status}
                             onChange={function() {checkTodo(todo)}}
                         />
-                        <p className="text-base font-bold text-navy-700 dark:text-white">
+                        <p className="text-base font-bold text-gray-100 dark:text-white">
                             {todo.text}
                         </p>
                     </div>
