@@ -1,5 +1,5 @@
 import React from "react";
-import Weekday from "./Weekday";
+import Weekday from "../Weekday/Weekday";
 
 interface CalendarProps {
     activeDateTimestamp: number,

@@ -11,7 +11,8 @@ interface AddTodoFormProps {
     onClose: () => void,
 }
 function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormProps) {
-    const[text, setText] = useState(item ? item.text : '');
+    const [text, setText] = useState(item ? item.text : '');
+    const [datepickerTimestamp, setDatepickerTimestamp] = useState(timestamp);
     function editTodo() {
         if (typeof item !== 'undefined') {
             item.text = text;
@@ -22,7 +23,7 @@ function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormPr
                 id: id,
                 status: false,
                 text: text,
-                date: timestamp,
+                date: datepickerTimestamp,
             };
             setTodo(id, newItem);
         }
@@ -32,7 +33,7 @@ function AddTodoForm({ item, items, timestamp, setTodo, onClose }: AddTodoFormPr
 
     return (
         <>
-            <DatePicker/>
+            <DatePicker timestamp={datepickerTimestamp} changeDate={setDatepickerTimestamp}/>
             <div className="relative h-10 w-72 mx-auto">
                 <input
                     className="peer h-full w-full rounded-[7px] border border-purple-600 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-purple-600 placeholder-shown:border-t-purple-600 focus:border-2 focus:border-purple-600 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import Calendar from "./components/UI/Calendar";
+import Calendar from "./components/Calendar/Calendar";
 import Header from "./components/Header/Header";
-import Button from "./components/Button/Button";
-import Modal from "./components/Modal/Modal";
+import Button from "./components/UI/Button";
+import Modal from "./components/UI/Modal";
 import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
-import List from "./components/List/List";
+import List from "./components/List/TodoList";
 
 export interface Todo {
     id: string,
@@ -29,7 +29,6 @@ function App() {
     const [modalIsOpen, setModalOpen] = useState(false);
 
     function setTodo(id: string, todo: Todo) {
-        console.log('CALLED');
         setAppState(prevState => {
             let todos = prevState.todos;
             todos.set(id, todo);

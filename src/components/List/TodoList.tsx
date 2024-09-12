@@ -6,12 +6,14 @@ interface ListProps {
     timestamp: number,
     setTodo: (id: string, todo: Todo) => void,
 }
-function List({ items, timestamp, setTodo }: ListProps) {
+function TodoList({ items, timestamp, setTodo }: ListProps) {
+    const todos = Array.from(items).filter(([id, todo]) => {
+        return (new Date(todo.date)).getDate() === (new Date(timestamp)).getDate();
+    });
+
     return (
         <>
-            {items && Array.from(items).map(([id, todo]) => {
-                if (new Date(todo.date).getDate() === new Date(timestamp).getDate()) {
-                    return (
+            {todos.length ? todos.map(([id, todo]) => (
                         <div key={id} className="mt-5 flex items-center justify-between p-2">
                             <div className="flex items-center justify-center gap-2">
                                 <input
@@ -28,16 +30,11 @@ function List({ items, timestamp, setTodo }: ListProps) {
                                 </p>
                             </div>
                         </div>
-                    )
-                } else {
-                    return (
-                        <span className="text-white">No TODOs for this date.</span>
-                    )
-                }
+                    ))
+                : ( <span className="text-white">No TODOs for this date.</span> )
             }
-            )}
         </>
     );
 }
 
-export default List;
+export default TodoList;
