@@ -26,7 +26,7 @@ export interface ModalState {
   todo?: Todo,
 }
 
-function App() {
+const App = () => {
   const [appState, setAppState] = useState<AppState>({
     activeDateTimestamp: new Date().getTime(),
     openWeekTimestamp: new Date().getTime(),
@@ -37,7 +37,7 @@ function App() {
     mode: 'add',
   });
 
-  function setTodo(id: string, todo: Todo) {
+  const setTodo = (id: string, todo: Todo) => {
     setAppState(prevState => {
       let todos = prevState.todos;
       todos.set(id, todo);
@@ -49,18 +49,18 @@ function App() {
     })
   }
 
-  function openModalWithAddForm() {
+  const openModalWithAddForm = () => {
     setModal({mode: 'add', status: true});
   }
-  function openModalWithEditForm(todo: Todo) {
+  const openModalWithEditForm = (todo: Todo) => {
     setModal({mode: 'edit', status: true, todo: todo});
   }
 
-  function closeModal() {
+  const closeModal = () => {
     setModal(prevState => ({...prevState, status: false}));
   }
 
-  function setActiveDateTimestamp(timestamp: number) {
+  const setActiveDateTimestamp = (timestamp: number) => {
     setAppState(prevState => ({...prevState, activeDateTimestamp: timestamp}));
   }
 
@@ -90,7 +90,7 @@ function App() {
           items={appState.todos}
           timestamp={appState.activeDateTimestamp}
           setTodo={setTodo}
-          openEdit={openModalWithEditForm}
+          onClickEdit={openModalWithEditForm}
         />
       </div>
       <div className="flex pt-6">
