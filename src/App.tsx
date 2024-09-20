@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Button from "./components/UI/Button";
 import Modal from "./components/UI/Modal";
 import TodoForm from "./components/TodoForm/TodoForm";
-import TodoList from "./components/List/TodoList";
+import TodoList from "./components/TodoList/TodoList";
 
 export interface Todo {
   id: string,
@@ -56,6 +56,18 @@ const App = () => {
     setModal({mode: 'edit', status: true, todo: todo});
   }
 
+  const deleteTodo = (id: string): void => {
+    setAppState(prevState => {
+      let todos = prevState.todos;
+      todos.delete(id);
+
+      return ({
+        ...prevState,
+        todos: todos,
+      })
+    })
+  }
+
   const closeModal = () => {
     setModal(prevState => ({...prevState, status: false}));
   }
@@ -91,6 +103,7 @@ const App = () => {
           timestamp={appState.activeDateTimestamp}
           setTodo={setTodo}
           onClickEdit={openModalWithEditForm}
+          onClickDelete={deleteTodo}
         />
       </div>
       <div className="flex pt-6">

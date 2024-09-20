@@ -7,9 +7,10 @@ interface ListProps {
   timestamp: number,
   setTodo: (id: string, todo: Todo) => void,
   onClickEdit: (todo: Todo) => void,
+  onClickDelete: (id: string) => void,
 }
 
-const TodoList: React.FC<ListProps> = ({items, timestamp, setTodo, onClickEdit}) => {
+const TodoList: React.FC<ListProps> = ({items, timestamp, setTodo, onClickEdit, onClickDelete}) => {
   const todos = Array.from(items).filter(([id, todo]) => {
     return (new Date(todo.date)).getDate() === (new Date(timestamp)).getDate();
   });
@@ -37,6 +38,9 @@ const TodoList: React.FC<ListProps> = ({items, timestamp, setTodo, onClickEdit})
               </p>
               <Button onClick={() => onClickEdit(todo)}>
                 <span>edit</span>
+              </Button>
+              <Button onClick={() => onClickDelete(id)}>
+                <span>delete</span>
               </Button>
             </div>
           </div>
