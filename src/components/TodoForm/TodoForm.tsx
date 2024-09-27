@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Todo} from "../../App";
+import {Todo} from "../../pages/Home";
 import uuid from 'react-uuid';
 import DatePicker from "../DatePicker/DatePicker";
 
