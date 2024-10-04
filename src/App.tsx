@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import './App.css';
 import Header from "./components/Header/Header";
 import Home from "./pages/Home";
+import FirebaseContextProvider from "./contexts/FirebaseContext";
 
 const App = () => {
   const [ user ] = useState(true);
@@ -18,7 +19,7 @@ const App = () => {
           <Routes>
             <Route
               path='/'
-              element={ !user ? <Navigate to='/login' /> : <Home /> }
+              element={ !user ? <Navigate to='/login' /> : <FirebaseContextProvider><Home /></FirebaseContextProvider> }
             />
           </Routes>
         </div>
