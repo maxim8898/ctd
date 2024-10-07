@@ -4,13 +4,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCoBudHzjHjDCcq-A_mhs7n5XCzNw6KNZ4",
-    authDomain: "clever-td.firebaseapp.com",
-    databaseURL: "https://clever-td-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "clever-td",
-    storageBucket: "clever-td.appspot.com",
-    messagingSenderId: "977457580022",
-    appId: "1:977457580022:web:05bff819a97274a28ea9d7"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
 
 // Initialize Firebase
