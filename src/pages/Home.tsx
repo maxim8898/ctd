@@ -6,13 +6,7 @@ import TodoList from "../components/TodoList/TodoList";
 import Button from "../components/UI/Button";
 import { set, ref } from "firebase/database";
 import { database } from "../firebase/Firebase";
-
-export interface Todo {
-  id: string,
-  status: boolean,
-  date: number,
-  text: string,
-}
+import Todo from "../interfaces/Todo";
 
 export interface AppState {
   activeDateTimestamp: number,

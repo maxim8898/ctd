@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import {Todo} from "../../pages/Home";
+import Todo from "../../interfaces/Todo";
+import Todos from "../../interfaces/Todos"
 import Button from "../UI/Button";
-import {FirebaseContext} from "../../contexts/FirebaseContext";
+import DatabaseContext from "../../contexts/Database/databaseContext";
 
 interface ListProps {
   timestamp: number,
@@ -10,12 +11,8 @@ interface ListProps {
   onClickDelete: (id: string) => void,
 }
 
-interface Todos {
-  todos: Map<string, Todo>,
-}
-
 const TodoList: React.FC<ListProps> = ({timestamp, setTodo, onClickEdit, onClickDelete}) => {
-  const { todos } = useContext<Todos>(FirebaseContext);
+  const { todos } = useContext<Todos>(DatabaseContext);
 
   const todosOnDate = Object.entries(todos).filter(([id, todo]) => {
     return (new Date(todo.date)).getDate() === (new Date(timestamp)).getDate();
