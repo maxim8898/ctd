@@ -1,17 +1,20 @@
-import React from "react";
-import {Todo} from "../../pages/Home";
+import React, { useContext } from "react";
+import Todo from "../../interfaces/Todo";
+import Todos from "../../interfaces/Todos"
 import Button from "../UI/Button";
+import DatabaseContext from "../../contexts/Database/databaseContext";
 
 interface ListProps {
-  items: Map<string, Todo>,
   timestamp: number,
   setTodo: (id: string, todo: Todo) => void,
   onClickEdit: (todo: Todo) => void,
   onClickDelete: (id: string) => void,
 }
 
-const TodoList: React.FC<ListProps> = ({items, timestamp, setTodo, onClickEdit, onClickDelete}) => {
-  const todos = Array.from(items).filter(([id, todo]) => {
+const TodoList: React.FC<ListProps> = ({timestamp, setTodo, onClickEdit, onClickDelete}) => {
+  const { todos } = useContext<Todos>(DatabaseContext);
+
+  const todosOnDate = Object.entries(todos).filter(([id, todo]) => {
     return (new Date(todo.date)).getDate() === (new Date(timestamp)).getDate();
   });
 
@@ -21,7 +24,7 @@ const TodoList: React.FC<ListProps> = ({items, timestamp, setTodo, onClickEdit, 
 
   return (
     <>
-      {todos.length ? todos.map(([id, todo]) => (
+      {todosOnDate.length ? todosOnDate.map(([id, todo]) => (
           <div key={id} className="mt-5 flex items-center justify-between p-2">
             <div className="flex items-center justify-center gap-2">
               <input

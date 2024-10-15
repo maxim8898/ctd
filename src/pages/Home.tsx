@@ -4,13 +4,9 @@ import Modal from "../components/UI/Modal";
 import TodoForm from "../components/TodoForm/TodoForm";
 import TodoList from "../components/TodoList/TodoList";
 import Button from "../components/UI/Button";
-
-export interface Todo {
-  id: string,
-  status: boolean,
-  date: number,
-  text: string,
-}
+import { set, ref } from "firebase/database";
+import { database } from "../firebase/Firebase";
+import Todo from "../interfaces/Todo";
 
 export interface AppState {
   activeDateTimestamp: number,
@@ -45,6 +41,9 @@ const Home = () => {
         todos: todos,
       })
     })
+
+    const todoRef = ref(database, `/todos/${id}`);
+    set(todoRef, {...todo});
   }
 
   const openModalWithAddForm = () => {
@@ -55,15 +54,8 @@ const Home = () => {
   }
 
   const deleteTodo = (id: string): void => {
-    setAppState(prevState => {
-      let todos = prevState.todos;
-      todos.delete(id);
-
-      return ({
-        ...prevState,
-        todos: todos,
-      })
-    })
+    const todoRef = ref(database, `/todos/${id}`);
+    set(todoRef, null);
   }
 
   const closeModal = () => {
@@ -75,38 +67,37 @@ const Home = () => {
   }
 
   return (
-    <>
-      <div className="flex max-w-sm md:max-w-none pt-6">
-        <Calendar activeDateTimestamp={appState.activeDateTimestamp}
-                  onClick={setActiveDateTimestamp}/>
-      </div>
-      <div>
-        <Modal
-          isOpen={modal.status}
-          onClose={closeModal}
-        >
-          <TodoForm items={appState.todos}
-                    item={modal.todo}
-                    timestamp={appState.activeDateTimestamp}
-                    setTodo={setTodo}
-                    onClose={closeModal}/>
-        </Modal>
-      </div>
-      <div>
-        <TodoList
-          items={appState.todos}
-          timestamp={appState.activeDateTimestamp}
-          setTodo={setTodo}
-          onClickEdit={openModalWithEditForm}
-          onClickDelete={deleteTodo}
-        />
-      </div>
-      <div className="flex pt-6">
-        <Button onClick={openModalWithAddForm}>
-          <span>Add TODO</span>
-        </Button>
-      </div>
-    </>
+        <>
+          <div className="flex max-w-sm md:max-w-none pt-6">
+            <Calendar activeDateTimestamp={appState.activeDateTimestamp}
+                      onClick={setActiveDateTimestamp}/>
+          </div>
+          <div>
+            <Modal
+              isOpen={modal.status}
+              onClose={closeModal}
+            >
+              <TodoForm items={appState.todos}
+                        item={modal.todo}
+                        timestamp={appState.activeDateTimestamp}
+                        setTodo={setTodo}
+                        onClose={closeModal}/>
+            </Modal>
+          </div>
+          <div>
+            <TodoList
+              timestamp={appState.activeDateTimestamp}
+              setTodo={setTodo}
+              onClickEdit={openModalWithEditForm}
+              onClickDelete={deleteTodo}
+            />
+          </div>
+          <div className="flex pt-6">
+            <Button onClick={openModalWithAddForm}>
+              <span>Add TODO</span>
+            </Button>
+          </div>
+        </>
   );
 }
 
